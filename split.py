@@ -48,7 +48,7 @@ def split():
     d = collections.Counter(count_list)
     x = range(11)
     values = [d[key] for key in x]
-    lamb = (i - 1) / 5760.0
+    lamb = i / 5760.0
     print("lamb = " + str(lamb))
     poisson_val = [poisson_probability(n, lamb) for n in x]
 
@@ -62,7 +62,7 @@ def split():
     left = np.arange(len(x))
     width = 0.3
     plt.bar(left, values, width=width, label="観測データ")
-    plt.bar(left + width, poisson_val, width=width, label="ポアソン分布")
+    plt.bar(left + width, poisson_val, width=width, label="ポアソン分布 λ=" + "{0:04f}".format(lamb))
 
     x_ticks = 1
     plt.xticks(left + width / 2, x[::x_ticks])
