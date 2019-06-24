@@ -49,6 +49,7 @@ def split():
     x = range(11)
     values = [d[key] for key in x]
     lamb = (i - 1) / 5760.0
+    print("lamb = " + str(lamb))
     poisson_val = [poisson_probability(n, lamb) for n in x]
 
     count_sum = 0.0
