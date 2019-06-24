@@ -1,6 +1,6 @@
 import collections
-
 import math
+
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
@@ -11,7 +11,6 @@ fp = FontProperties(fname=r'/System/Library/Fonts/ヒラギノ明朝 ProN.ttc', 
 start_time = 1560092400
 end_time = 1560438000
 unix_tick = 60
-lamb = 0
 
 
 def split():
@@ -20,13 +19,13 @@ def split():
     count_dict = {}
 
     split_time = start_time
+    i = 0
 
     try:
 
-        i = 0
         count = 0
 
-        while split_time <= end_time:
+        while split_time <= end_time and i < len(df):
             time = df.loc[i, "unixtime"]
             if time > split_time + unix_tick:
                 count_list.append(count)
@@ -49,7 +48,7 @@ def split():
     d = collections.Counter(count_list)
     x = range(11)
     values = [d[key] for key in x]
-    lamb = i / 5760.0
+    lamb = (i - 1) / 5760.0
     poisson_val = [poisson_probability(n, lamb) for n in x]
 
     count_sum = 0.0
